@@ -67,22 +67,14 @@ export const CaseStudy = ({ project, company, onClose }) => {
         <div className="takeover" data-testid="case-study-takeover">
             <div style={{ maxWidth: 900, margin: "0 auto", padding: "70px 24px 100px" }}>
                 {/* Header */}
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "flex-start",
-                        marginBottom: 28,
-                        gap: 20,
-                    }}
-                >
-                    <div>
+                <div className="case-header">
+                    <div className="case-header-text">
                         <div className="section-tag" style={{ marginBottom: 4 }}>
                             {company.name} · Case study
                         </div>
                         <h2
                             style={{
-                                fontSize: "clamp(28px, 4vw, 40px)",
+                                fontSize: "clamp(24px, 4vw, 40px)",
                                 lineHeight: 1.15,
                                 letterSpacing: "-0.02em",
                             }}
@@ -115,7 +107,7 @@ export const CaseStudy = ({ project, company, onClose }) => {
                             </p>
                         )}
                     </div>
-                    <div style={{ display: "flex", gap: 10, flexShrink: 0 }}>
+                    <div className="case-header-actions">
                         <button
                             onClick={copyLink}
                             aria-label="Copy link to this case study"
@@ -124,7 +116,7 @@ export const CaseStudy = ({ project, company, onClose }) => {
                                 display: "inline-flex",
                                 alignItems: "center",
                                 gap: 6,
-                                height: 42,
+                                height: 40,
                                 padding: "0 14px",
                                 borderRadius: 999,
                                 background: copied
@@ -148,8 +140,8 @@ export const CaseStudy = ({ project, company, onClose }) => {
                             aria-label="Close case study"
                             data-testid="case-study-close"
                             style={{
-                                width: 42,
-                                height: 42,
+                                width: 40,
+                                height: 40,
                                 borderRadius: "50%",
                                 background: "rgba(255,255,255,0.05)",
                                 border: "1px solid var(--border)",
@@ -158,6 +150,7 @@ export const CaseStudy = ({ project, company, onClose }) => {
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center",
+                                flexShrink: 0,
                             }}
                         >
                             <X size={18} />
@@ -208,7 +201,27 @@ export const CaseStudy = ({ project, company, onClose }) => {
             </div>
 
             <style>{`
+                .case-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    margin-bottom: 28px;
+                    gap: 20px;
+                }
+                .case-header-actions {
+                    display: flex;
+                    gap: 10px;
+                    flex-shrink: 0;
+                }
                 @media (max-width: 640px) {
+                    .case-header {
+                        flex-direction: column-reverse;
+                        align-items: stretch;
+                        gap: 16px;
+                    }
+                    .case-header-actions {
+                        justify-content: flex-end;
+                    }
                     .case-stats { grid-template-columns: 1fr 1fr !important; }
                 }
                 @media (max-width: 420px) {
