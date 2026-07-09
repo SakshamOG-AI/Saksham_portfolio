@@ -375,16 +375,36 @@ export const PROJECTS = [
     {
         id: "snabbit",
         wordmark: "Snabbit",
-        category: "Observation-led build",
-        title: "Snabbit — time estimation prototype",
+        category: "Product prototype · Full-stack build",
+        title: "Snabbit — smart time estimation",
         blurb:
-            "A prototype of a delivery time-estimation feature — an observation as a user that turned into a self-initiated build.",
+            "A booking-flow feature that replaces a guess with an answer — built end to end, frontend to backend, for Snabbit's home-services app.",
         problem:
-            "Noticed Snabbit's home-service delivery flow was missing a real time-estimation signal — a friction point I kept running into as a user. That observation was worth turning into a personal project rather than filing away as feedback.",
+            "Snabbit's booking flow gives users a binary choice — 60 minutes (₹99) or 90 minutes (₹139) — with no way to know which one actually fits their situation: home size, how many rooms, or how long it's been since the task was last done. Two failure modes. Under-booking is the more damaging one — the expert works the booked duration and leaves with the task unfinished, directly damaging trust in the platform. Over-booking means the user pays more than they needed to and starts feeling overcharged, which pushes people toward negotiating with workers directly instead of trusting the app's pricing. Google Play reviews explicitly call out workers leaving mid-task — this isn't an edge case, it's a systematic gap that gets worse with every new user who hasn't yet built intuition for how long these tasks take.",
         approach:
-            "Built a functional prototype of the missing time-estimation feature end-to-end — treating the problem as a real product exercise: understand the flow, teardown the current UX, and ship a working version rather than just describing one.",
-        stack: ["Prototype build", "Product teardown", "Full-stack shipping"],
+            "Built an opt-in “Estimate time” flow that sits below the existing 60/90-minute choice — users who already know what they want see zero change; only uncertain users engage with it. It asks a short, adaptive set of questions: what needs doing, home size (by BHK type), pets, and — the key design decision — a separate recency question for each service, because a bathroom untouched for a month and a kitchen cleaned last week need very different amounts of time even inside the same home. Answers run through a scoring formula (service load × home-size multiplier × per-service recency multiplier, plus a flat bump for pets) against a threshold that outputs 60 or 90 minutes. Returning users skip most of it — the home profile is remembered, so a repeat booking of the same service can come down to one question. It never blocks a booking either: the non-recommended option stays tappable as a zero-friction override.\n\nFrontend: React (Vite) on Netlify — one scrollable form, not a wizard. Questions expand and collapse live as services are selected or deselected. Tapping “Estimate” plays a fixed 3-second loader while the real API call runs underneath, then the result sheet slides up with the recommended duration pre-selected and a one-line reason (“Your 2 BHK and last clean over a month ago”).\n\nBackend: Node/Express on Render with a Neon Postgres database behind a POST /api/estimate endpoint. Three tables do the work: home_profiles caches each user's home type and pet status; service_recency stores the last recency answer per service per user; and estimation_sessions logs every completed flow — inputs, recommendation, and whether the user overrode it — turning every booking into a labeled training example for a future learned version of the same model.\n\nDesigned at three levels: for the user, a guess becomes an answer they can trust before paying. For operations, every completed flow produces structured signal — service type, home size, recency, tied to a locality — the exact input needed to schedule the right mix of long-slot vs. short-slot workers per micro-cluster ahead of demand. Recency data doubles as a reactivation signal: knowing roughly when a customer is “due” for their next clean means Snabbit can prompt them instead of waiting for them to remember. v1 ships the booking correction and collects the data; that data is what eventually trains the demand-forecasting layer on top of it.",
+        stack: [
+            "React (Vite)",
+            "Node/Express",
+            "Neon PostgreSQL",
+            "REST API",
+            "Rule-based scoring engine",
+        ],
         live: "https://snabbit-estimation.netlify.app",
+    },
+    {
+        id: "taskflow",
+        wordmark: "TaskFlow",
+        category: "Personal productivity · Built on Lovable",
+        title: "TaskFlow — personal task manager",
+        blurb:
+            "A Jira-style task manager I built after losing track of my own work one too many times.",
+        problem:
+            "Juggling Tmrw, OZI, college, and a constant cold-outreach pipeline meant work kept slipping through the cracks — tasks getting reassigned, replaced, or missed entirely because nothing lived in one place.",
+        approach:
+            "Built TaskFlow — a Jira-style task manager with both list and board views, so I can plan and prioritize however fits the moment. Tasks sit alongside a dedicated notes area for context that doesn't belong in a task title. Integrated the Gemini API as a built-in AI chat bar that can act directly on that context — for example, drafting an email off my own notes instead of me reformatting them by hand.",
+        stack: ["Lovable (React)", "Gemini API", "List & board views", "Notes"],
+        live: "https://your-perfect-tasks.lovable.app/tasks",
     },
 ];
 

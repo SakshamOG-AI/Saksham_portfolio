@@ -18,7 +18,7 @@ export const Projects = () => {
                     interesting, one built cold for a company before ever emailing them.
                 </p>
 
-                <div className="grid-2" data-testid="projects-grid">
+                <div className="projects-grid" data-testid="projects-grid">
                     {PROJECTS.map((p) => (
                         <button
                             key={p.id}
@@ -46,7 +46,7 @@ export const Projects = () => {
                             {/* Gradient tile with wordmark */}
                             <div
                                 style={{
-                                    height: 140,
+                                    height: 130,
                                     background: "var(--grad)",
                                     display: "flex",
                                     alignItems: "center",
@@ -58,21 +58,21 @@ export const Projects = () => {
                                     style={{
                                         background: "#fff",
                                         color: "#0b0b12",
-                                        padding: "10px 18px",
+                                        padding: "9px 16px",
                                         borderRadius: 999,
                                         fontFamily: "var(--font-head)",
                                         fontWeight: 800,
-                                        fontSize: 15,
+                                        fontSize: 14,
                                         letterSpacing: "-0.01em",
                                     }}
                                 >
                                     {p.wordmark}
                                 </div>
                             </div>
-                            <div style={{ padding: 22 }}>
+                            <div style={{ padding: 20 }}>
                                 <div
                                     style={{
-                                        fontSize: 11.5,
+                                        fontSize: 11,
                                         color: "var(--primary)",
                                         textTransform: "uppercase",
                                         letterSpacing: "0.08em",
@@ -86,18 +86,19 @@ export const Projects = () => {
                                     style={{
                                         fontFamily: "var(--font-head)",
                                         fontWeight: 700,
-                                        fontSize: 18,
+                                        fontSize: 17,
                                         marginBottom: 8,
+                                        lineHeight: 1.3,
                                     }}
                                 >
                                     {p.title}
                                 </div>
                                 <p
                                     style={{
-                                        fontSize: 13.5,
+                                        fontSize: 13,
                                         color: "rgba(250,250,251,0.7)",
                                         margin: "0 0 14px",
-                                        lineHeight: 1.6,
+                                        lineHeight: 1.55,
                                     }}
                                 >
                                     {p.blurb}
@@ -238,15 +239,18 @@ const ModalBlock = ({ label, body }) => (
         <div className="section-tag" style={{ marginBottom: 6 }}>
             {label}
         </div>
-        <p
-            style={{
-                fontSize: 14,
-                color: "rgba(250,250,251,0.82)",
-                lineHeight: 1.7,
-                margin: 0,
-            }}
-        >
-            {body}
-        </p>
+        {body.split("\n\n").map((para, i) => (
+            <p
+                key={i}
+                style={{
+                    fontSize: 14,
+                    color: "rgba(250,250,251,0.82)",
+                    lineHeight: 1.7,
+                    margin: i === 0 ? "0 0 12px" : "0 0 12px",
+                }}
+            >
+                {para}
+            </p>
+        ))}
     </div>
 );
