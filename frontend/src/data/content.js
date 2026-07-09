@@ -24,6 +24,30 @@ export const TMRW_LOGO =
 export const OZI_LOGO =
     "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/y97e9rwc_image.png";
 
+// Gallery photos — displayed in a masonry layout so nothing gets cropped.
+export const GALLERY_PHOTOS = [
+    {
+        src: "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/gz2wriuj_WhatsApp%20Image%202026-07-09%20at%2010.00.46%20%282%29.jpeg",
+        alt: "HSBC India Business Case Programme 2024-25 — ID card",
+    },
+    {
+        src: "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/ik8s4bfk_WhatsApp%20Image%202026-07-09%20at%2010.00.46%20%281%29.jpeg",
+        alt: "Cricket team win — with trophy",
+    },
+    {
+        src: "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/g1ensey8_WhatsApp%20Image%202026-07-09%20at%2010.00.45.jpeg",
+        alt: "Diamond Jubilee Award — MIT Manipal",
+    },
+    {
+        src: "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/8pzp5977_WhatsApp%20Image%202026-07-09%20at%2010.00.45%20%281%29.jpeg",
+        alt: "MIT amphitheater — team group photo",
+    },
+    {
+        src: "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/dxr2mza8_WhatsApp%20Image%202026-07-09%20at%2010.00.44.jpeg",
+        alt: "Panel discussion — Library Auditorium, MIT Manipal",
+    },
+];
+
 export const ABOUT = {
     paragraphs: [
         "I'm a product manager who starts with the problem, not the solution — reading behavioral data to find where things actually break, then getting close enough to users to understand why. I care about the outcome for the business and the person using the product, and I don't think you get to either one by only staring at a dashboard.",

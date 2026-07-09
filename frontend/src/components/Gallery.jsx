@@ -1,6 +1,24 @@
-import { Image as ImageIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+import { X } from "lucide-react";
+import { GALLERY_PHOTOS } from "../data/content";
 
 export const Gallery = () => {
+    const [lightboxIdx, setLightboxIdx] = useState(null);
+
+    useEffect(() => {
+        if (lightboxIdx === null) return;
+        const prev = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        const onKey = (e) => {
+            if (e.key === "Escape") setLightboxIdx(null);
+        };
+        window.addEventListener("keydown", onKey);
+        return () => {
+            document.body.style.overflow = prev;
+            window.removeEventListener("keydown", onKey);
+        };
+    }, [lightboxIdx]);
+
     return (
         <section id="gallery" data-testid="section-gallery">
             <div className="wrap">
@@ -9,49 +27,111 @@ export const Gallery = () => {
                     A few <span className="grad-text">moments</span>
                 </h2>
                 <p className="section-desc" data-testid="gallery-note">
-                    Placeholder stub — nav item and layout are wired up, real photos to be
-                    dropped in once supplied.
+                    Case competitions, campus events, and a couple of small wins along the way.
                 </p>
 
-                <div
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(4, 1fr)",
-                        gap: 12,
-                    }}
-                    className="gallery-grid"
-                    data-testid="gallery-grid"
-                >
-                    {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
-                        <div
-                            key={i}
-                            data-testid={`gallery-tile-${i}`}
+                <div className="gallery-masonry" data-testid="gallery-grid">
+                    {GALLERY_PHOTOS.map((photo, i) => (
+                        <button
+                            key={photo.src}
+                            onClick={() => setLightboxIdx(i)}
+                            className="gallery-item"
+                            data-testid={`gallery-photo-${i}`}
+                            aria-label={`Open photo: ${photo.alt}`}
                             style={{
-                                aspectRatio: "1 / 1",
-                                border: "1px dashed var(--border)",
-                                borderRadius: 10,
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                color: "rgba(250,250,251,0.35)",
-                                fontSize: 11.5,
-                                textAlign: "center",
-                                padding: 8,
-                                gap: 6,
+                                display: "block",
+                                width: "100%",
+                                padding: 0,
+                                border: "1px solid var(--border)",
+                                borderRadius: 12,
+                                overflow: "hidden",
+                                background: "var(--card)",
+                                cursor: "pointer",
+                                marginBottom: 14,
+                                breakInside: "avoid",
+                                transition: "border-color 0.2s, transform 0.2s",
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.borderColor = "rgba(0,128,255,0.4)";
+                                e.currentTarget.style.transform = "translateY(-2px)";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.borderColor = "var(--border)";
+                                e.currentTarget.style.transform = "translateY(0)";
                             }}
                         >
-                            <ImageIcon size={20} />
-                            photo coming soon
-                        </div>
+                            <img
+                                src={photo.src}
+                                alt={photo.alt}
+                                loading="lazy"
+                                style={{
+                                    width: "100%",
+                                    height: "auto",
+                                    display: "block",
+                                }}
+                            />
+                        </button>
                     ))}
                 </div>
             </div>
 
-            <style>{`
-                @media (max-width: 760px) { .gallery-grid { grid-template-columns: repeat(3, 1fr) !important; } }
-                @media (max-width: 480px) { .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-            `}</style>
+            {lightboxIdx !== null && (
+                <div
+                    role="dialog"
+                    aria-modal="true"
+                    data-testid="gallery-lightbox"
+                    onClick={(e) => e.target === e.currentTarget && setLightboxIdx(null)}
+                    style={{
+                        position: "fixed",
+                        inset: 0,
+                        background: "rgba(0,0,0,0.9)",
+                        backdropFilter: "blur(6px)",
+                        zIndex: 100,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        padding: 20,
+                        animation: "fade-in 0.25s ease both",
+                    }}
+                >
+                    <button
+                        onClick={() => setLightboxIdx(null)}
+                        aria-label="Close photo"
+                        data-testid="gallery-lightbox-close"
+                        style={{
+                            position: "fixed",
+                            top: 20,
+                            right: 20,
+                            width: 44,
+                            height: 44,
+                            borderRadius: "50%",
+                            background: "rgba(255,255,255,0.08)",
+                            border: "1px solid var(--border)",
+                            color: "var(--foreground)",
+                            cursor: "pointer",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            zIndex: 101,
+                        }}
+                    >
+                        <X size={20} />
+                    </button>
+                    <img
+                        src={GALLERY_PHOTOS[lightboxIdx].src}
+                        alt={GALLERY_PHOTOS[lightboxIdx].alt}
+                        style={{
+                            maxWidth: "min(100%, 1200px)",
+                            maxHeight: "88vh",
+                            width: "auto",
+                            height: "auto",
+                            objectFit: "contain",
+                            display: "block",
+                            borderRadius: 8,
+                        }}
+                    />
+                </div>
+            )}
         </section>
     );
 };

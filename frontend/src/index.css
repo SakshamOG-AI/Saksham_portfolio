@@ -528,6 +528,27 @@ nav.site-nav .resume-btn:hover {
 
 /* ---------- Projects modal (shadcn Dialog styling overrides) ---------- */
 
+/* ---------- gallery masonry ---------- */
+.gallery-masonry {
+    column-count: 3;
+    column-gap: 14px;
+}
+.gallery-masonry .gallery-item {
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+@media (max-width: 900px) {
+    .gallery-masonry {
+        column-count: 2;
+    }
+}
+@media (max-width: 520px) {
+    .gallery-masonry {
+        column-count: 1;
+    }
+}
+
 /* ---------- utility ---------- */
 .hairline {
     height: 1px;
