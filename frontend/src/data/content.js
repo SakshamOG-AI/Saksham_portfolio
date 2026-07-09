@@ -1,4 +1,4 @@
-// All portfolio copy — verbatim from the latest CONTENT.md. Don't paraphrase.
+// All portfolio copy — updated. Don't paraphrase.
 
 export const NAV_SECTIONS = [
     { id: "home", label: "Home" },
@@ -17,6 +17,12 @@ export const EMAIL = "saqsham2002@gmail.com";
 
 export const HERO_BG =
     "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/49iswo72_WhatsApp%20Image%202026-07-08%20at%2023.55.16.jpeg";
+// About photo — same source image as the hero for now, cropped as a circle.
+export const ABOUT_PHOTO = HERO_BG;
+export const TMRW_LOGO =
+    "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/udk3w8nx_image.png";
+export const OZI_LOGO =
+    "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/y97e9rwc_image.png";
 
 export const ABOUT = {
     paragraphs: [
@@ -45,6 +51,7 @@ export const COMPANIES = [
     {
         id: "tmrw",
         name: "Tmrw",
+        logo: TMRW_LOGO,
         dates: "Jan 2026 – present",
         role: "Product management intern",
         line: "Aditya Birla Group's D2C house of brands — Bewakoof, Nobero, TIGC and more.",
@@ -58,47 +65,6 @@ export const COMPANIES = [
             "Jira & Notion workflow ownership",
         ],
         projects: [
-            {
-                id: "dynamic-filters",
-                title: "Dynamic filters (Bewakoof PLP)",
-                headline: "↓80% zero-results",
-                cardCopy:
-                    "Rebuilt Bewakoof's PLP filter logic end-to-end so a user can no longer select a combination that doesn't exist in stock.",
-                problem:
-                    "42.8% of filter-apply sessions on Bewakoof's PLP were ending on a “No Items Found” zero-result page. Two root causes. First, static filters — filter options didn't update based on the user's selections or real-time inventory, so a user could pick a combination like size XL + color blue + slim fit that simply didn't exist in stock; the filter showed the option, the inventory didn't have it, and the user landed on an empty page. Second, generic filter attributes reused across every category instead of being tailored per category (t-shirts, jeans, shirts), which surfaced irrelevant attributes and caused wrong selections. On top of both: wrong or duplicate attribute values sitting in the catalogue, so a user could select a misspelled or duplicate size value and still land on zero results.",
-                solution:
-                    "Owned the full PRD, the user stories, the filter architecture logic, and the UX flows across mobile, desktop, and edge cases. Designed a two-tier attribute system: primary attributes (size, color) are always visible; secondary, category-specific attributes (fit, fabric for t-shirts, for example) only appear once a category is selected, so users never see irrelevant options. Built five components total: (1) dynamic filter updates — after every sub-attribute selection, all other attributes recompute in real time to show only inventory-valid combinations; (2) a real-time product count shown next to each filter value; (3) the two-tier attribute logic itself; (4) a new filter API — a dedicated endpoint built specifically for the dynamic filter system, separate from the existing PLP catalogue call; (5) a full catalogue cleanup pass across 300,000+ product IDs to remove wrong, duplicate, and incorrect attribute values before the new system could go live. Designed and owned the A/B test structure, then presented the full filter revamp at the Q1 FY26 quarterly feature review.",
-                metrics:
-                    "Zero-result filter sessions, overall PLP conversion, catalogue data quality (300,000+ PIDs cleaned), filter-to-purchase reliability.",
-                numbers:
-                    "42.8% → near-eliminated (zero-result sessions, ↓80% overall); conversion trending +1.6% positive, 10 days into a still-running A/B test; 300,000+ product IDs cleaned as part of the fix.",
-                stats: [
-                    { num: 80, suffix: "%", prefix: "↓", lbl: "Zero-result sessions" },
-                    { num: 1.6, suffix: "%", prefix: "+", lbl: "Conversion (A/B)", decimals: 1 },
-                    { num: 300000, suffix: "+", lbl: "PIDs cleaned" },
-                ],
-                hasDemo: true,
-            },
-            {
-                id: "header-logo",
-                title: "Header logo (Bewakoof PLP/PDP)",
-                headline: "+2.79% conversion",
-                cardCopy:
-                    "Added a one-tap way home for users landing on Bewakoof with no navigation history.",
-                problem:
-                    "Users landing on Bewakoof's PLP or PDP from marketing channels — ads, social, email — arrive with no navigation history. The back arrow becomes a dead element with nowhere to go. This was surfaced by a personal Microsoft Clarity analysis run at the very start of the internship: heatmaps, rage clicks, dead clicks, and session recordings, filtered to regular weekdays to avoid sale-driven anomalies, and split by new vs. returning users and Android vs. iOS. That analysis found a 70% rage-tap rate on the broken back button before users gave up and bounced.",
-                solution:
-                    "Added a tappable Bewakoof logo to the top nav bar on both PLP and PDP, alongside the existing back arrow — one tap always routes to the homepage. A clean, simple, always-available navigation escape for every user. This was one of two projects seeded directly by that first Clarity analysis. Ran as a full-funnel A/B experiment, variant vs. control.",
-                metrics:
-                    "User conversion, purchased users, average basket size, PLP-to-purchase and PDP-to-purchase completion among users who used the logo, logo click-through rate.",
-                numbers:
-                    "+2.79% user conversion, +2.61% purchased users, +1.22% average basket size, +135% PLP→purchase among PLP clickers, +76% PDP→purchase among PDP clickers, 1.58% overall logo click-through rate. Ramped to 100% the following sprint as a clear, uncontested winner.",
-                stats: [
-                    { num: 2.79, suffix: "%", prefix: "+", lbl: "Conversion", decimals: 2 },
-                    { num: 135, suffix: "%", prefix: "+", lbl: "PLP → purchase" },
-                    { num: 76, suffix: "%", prefix: "+", lbl: "PDP → purchase" },
-                ],
-            },
             {
                 id: "cohort-sorting",
                 title: "Cohort-based PLP sorting (Nobero)",
@@ -117,26 +83,6 @@ export const COMPANIES = [
                     { num: 100000, suffix: "+", lbl: "Sessions analyzed" },
                     { num: 4, lbl: "Cohorts validated" },
                     { num: 4.1, suffix: "x", lbl: "Intent gap", decimals: 1 },
-                ],
-            },
-            {
-                id: "nectar-loyalty",
-                title: "Nectar loyalty wallet (Nobero)",
-                headline: "+22% app revenue",
-                cardCopy:
-                    "Rolled out Nobero's loyalty wallet across 7 touchpoints, from PLP to post-order.",
-                problem:
-                    "Nobero had no repeat-purchase moat. Loyalty programs are table stakes in fashion D2C — Myntra Insider, Ajio Wardrobe, H&M Member all already live — and without one, Nobero had no structured habit loop or measurable repeat-purchase signal.",
-                solution:
-                    "Owned the end-to-end rollout of Nectar, a third-party loyalty wallet, across Nobero. Users earn 10% cashback on every purchase, redeemable on any future order above ₹999 — redemption is deliberately app-only, to create an app pull. Surfaced messaging across 7 touchpoints spanning the full funnel: pre-order (a wallet balance strip on PLP, a cashback callout with info icon on PDP, wallet messaging in cart) and post-order (a Thank You page confirming eligible cashback, an Order Details page showing total money saved via Nectar, and a dedicated Cashback & Rewards section to browse rewards, history, and redeem).",
-                metrics:
-                    "Share of orders and revenue influenced by the loyalty wallet, app revenue contribution, platform-specific conversion (tracked separately for Android, iOS, Desktop since results diverged by platform).",
-                numbers:
-                    "Influences 6% of orders and 7% of revenue on Nobero, +22% app revenue contribution. A/B results split by platform: +3% Desktop conversion, +1% iOS conversion, −8% Android conversion (Android result is still being iterated on).",
-                stats: [
-                    { num: 6, suffix: "%", lbl: "Orders influenced" },
-                    { num: 22, suffix: "%", prefix: "+", lbl: "App revenue" },
-                    { num: 7, suffix: "%", lbl: "Revenue influenced" },
                 ],
             },
             {
@@ -159,11 +105,165 @@ export const COMPANIES = [
                     { num: 50, suffix: "pt", lbl: "Gap to close" },
                 ],
             },
+            {
+                id: "dynamic-filters",
+                title: "Dynamic filters (Bewakoof PLP)",
+                headline: "↓80% zero-results",
+                cardCopy:
+                    "Rebuilt Bewakoof's PLP filter logic end-to-end so a user can no longer select a combination that doesn't exist in stock.",
+                problem:
+                    "42.8% of filter-apply sessions on Bewakoof's PLP were ending on a “No Items Found” zero-result page. Two root causes. First, static filters — filter options didn't update based on the user's selections or real-time inventory, so a user could pick a combination like size XL + color blue + slim fit that simply didn't exist in stock; the filter showed the option, the inventory didn't have it, and the user landed on an empty page. Second, generic filter attributes reused across every category instead of being tailored per category (t-shirts, jeans, shirts), which surfaced irrelevant attributes and caused wrong selections. On top of both: wrong or duplicate attribute values sitting in the catalogue, so a user could select a misspelled or duplicate size value and still land on zero results.",
+                solution:
+                    "Owned the full PRD, the user stories, the filter architecture logic, and the UX flows across mobile, desktop, and edge cases. Designed a two-tier attribute system: primary attributes (size, color) are always visible; secondary, category-specific attributes (fit, fabric for t-shirts, for example) only appear once a category is selected, so users never see irrelevant options. Built five components total: (1) dynamic filter updates — after every sub-attribute selection, all other attributes recompute in real time to show only inventory-valid combinations; (2) a real-time product count shown next to each filter value; (3) the two-tier attribute logic itself; (4) a new filter API — a dedicated endpoint built specifically for the dynamic filter system, separate from the existing PLP catalogue call; (5) a full catalogue cleanup pass across 300,000+ product IDs to remove wrong, duplicate, and incorrect attribute values before the new system could go live. Designed and owned the A/B test structure, then presented the full filter revamp at the Q1 FY26 quarterly feature review.",
+                metrics:
+                    "Zero-result filter sessions, overall PLP conversion, catalogue data quality (300,000+ PIDs cleaned), filter-to-purchase reliability.",
+                numbers:
+                    "42.8% → near-eliminated (zero-result sessions, ↓80% overall); conversion trending +1.6% positive, 10 days into a still-running A/B test; 300,000+ product IDs cleaned as part of the fix.",
+                stats: [
+                    { num: 80, suffix: "%", prefix: "↓", lbl: "Zero-result sessions" },
+                    { num: 1.6, suffix: "%", prefix: "+", lbl: "Conversion (A/B)", decimals: 1 },
+                    { num: 300000, suffix: "+", lbl: "PIDs cleaned" },
+                ],
+                hasDemo: true,
+            },
+            {
+                id: "nectar-loyalty",
+                title: "Nectar loyalty wallet (Nobero)",
+                headline: "+22% app revenue",
+                cardCopy:
+                    "Rolled out Nobero's loyalty wallet across 7 touchpoints, from PLP to post-order.",
+                problem:
+                    "Nobero had no repeat-purchase moat. Loyalty programs are table stakes in fashion D2C — Myntra Insider, Ajio Wardrobe, H&M Member all already live — and without one, Nobero had no structured habit loop or measurable repeat-purchase signal.",
+                solution:
+                    "Owned the end-to-end rollout of Nectar, a third-party loyalty wallet, across Nobero. Users earn 10% cashback on every purchase, redeemable on any future order above ₹999 — redemption is deliberately app-only, to create an app pull. Surfaced messaging across 7 touchpoints spanning the full funnel: pre-order (a wallet balance strip on PLP, a cashback callout with info icon on PDP, wallet messaging in cart) and post-order (a Thank You page confirming eligible cashback, an Order Details page showing total money saved via Nectar, and a dedicated Cashback & Rewards section to browse rewards, history, and redeem).",
+                metrics:
+                    "Share of orders and revenue influenced by the loyalty wallet, app revenue contribution, platform-specific conversion (tracked separately for Android, iOS, Desktop since results diverged by platform).",
+                numbers:
+                    "Influences 6% of orders and 7% of revenue on Nobero, +22% app revenue contribution. A/B results split by platform: +3% Desktop conversion, +1% iOS conversion, −8% Android conversion (Android result is still being iterated on).",
+                stats: [
+                    { num: 6, suffix: "%", lbl: "Orders influenced" },
+                    { num: 22, suffix: "%", prefix: "+", lbl: "App revenue" },
+                    { num: 7, suffix: "%", lbl: "Revenue influenced" },
+                ],
+            },
+            {
+                id: "header-logo",
+                title: "Header logo (Bewakoof PLP/PDP)",
+                headline: "+2.79% conversion",
+                cardCopy:
+                    "Added a one-tap way home for users landing on Bewakoof with no navigation history.",
+                problem:
+                    "Users landing on Bewakoof's PLP or PDP from marketing channels — ads, social, email — arrive with no navigation history. The back arrow becomes a dead element with nowhere to go. This was surfaced by a personal Microsoft Clarity analysis run at the very start of the internship: heatmaps, rage clicks, dead clicks, and session recordings, filtered to regular weekdays to avoid sale-driven anomalies, and split by new vs. returning users and Android vs. iOS. That analysis found a 70% rage-tap rate on the broken back button before users gave up and bounced.",
+                solution:
+                    "Added a tappable Bewakoof logo to the top nav bar on both PLP and PDP, alongside the existing back arrow — one tap always routes to the homepage. A clean, simple, always-available navigation escape for every user. This was one of two projects seeded directly by that first Clarity analysis. Ran as a full-funnel A/B experiment, variant vs. control.",
+                metrics:
+                    "User conversion, purchased users, average basket size, PLP-to-purchase and PDP-to-purchase completion among users who used the logo, logo click-through rate.",
+                numbers:
+                    "+2.79% user conversion, +2.61% purchased users, +1.22% average basket size, +135% PLP→purchase among PLP clickers, +76% PDP→purchase among PDP clickers, 1.58% overall logo click-through rate. Ramped to 100% the following sprint as a clear, uncontested winner.",
+                stats: [
+                    { num: 2.79, suffix: "%", prefix: "+", lbl: "Conversion", decimals: 2 },
+                    { num: 135, suffix: "%", prefix: "+", lbl: "PLP → purchase" },
+                    { num: 76, suffix: "%", prefix: "+", lbl: "PDP → purchase" },
+                ],
+            },
+            {
+                id: "fbt-atc",
+                title: "FBT on Add to Cart (Bewakoof PDP)",
+                headline: "In experiment",
+                cardCopy:
+                    "Moved Bewakoof's product recommendations to the exact moment of highest purchase intent — right after Add to Cart.",
+                problem:
+                    "Users follow a predictable PDP pattern — land, browse images, select size/colour, tap Add to Cart, exit — completing their purchase intent and leaving without scrolling further. The FBT (Frequently Bought Together) and recommendation sections sat below the ATC button, at roughly 70% scroll depth. Clarity data sampled across two PDP URLs (4,823 combined sessions) showed only 66% of users even reach the ATC button zone at 40% scroll depth, with a dramatic drop-off below that — recommendation sections were getting near-zero visibility for most sessions.",
+                solution:
+                    "Surface FBT recommendations at the moment of highest intent — immediately after the user taps Add to Cart — without requiring any further scroll. Two things happen simultaneously on ATC tap: a slim, non-blocking confirmation bar replaces the old “Item Added to Bag” toast at the top (showing product name, price, and a View Bag link), and an FBT bottom sheet auto-inserts below it — 4 to 5 product cards in horizontal scroll, each with a direct one-tap (+) add, no modal navigation required. The shelf appears exactly where the user's thumb already is.",
+                metrics:
+                    "Visibility of recommendation/cross-sell inventory at the highest-intent moment in the PDP flow.",
+                numbers:
+                    "Built directly from Clarity data showing only 34% of users ever reached the old recommendation zone. Shipped and currently in experiment — final before/after conversion numbers not yet locked. This is one of the “4 growth features” (with header logo, feed view, and large-tile-style) that together drove +3.2% overall user conversion and +1.52% purchased users on Bewakoof.",
+                stats: [
+                    { num: 34, suffix: "%", lbl: "Old reco visibility" },
+                    { num: 3.2, suffix: "%", prefix: "+", lbl: "Bundle conversion", decimals: 1 },
+                    { num: 1.52, suffix: "%", prefix: "+", lbl: "Purchased users", decimals: 2 },
+                ],
+            },
+            {
+                id: "best-price-plp",
+                title: "Best Price on PLP (Bewakoof)",
+                headline: "In development",
+                cardCopy:
+                    "Extended Bewakoof's “Best Price” discount visibility one level earlier, from PDP to the product listing page.",
+                problem:
+                    "Bewakoof offers tiered cart-level discounts plus a 5% prepaid discount at checkout, but users only discovered these at cart or checkout — too late in the journey. On the PLP, users were forming their value perception on displayed price alone, and a meaningful share of traffic (new users) had never been through checkout before, so they had no way of knowing these offers even existed. “Best Price” — a tag showing the real, all-discounts-included price — had already shipped on PDP and delivered a measurable lift across PDP→ATC, ATC→Checkout, AOV and RPU.",
+                solution:
+                    "Add a “Best Price ₹XXX” tag to every eligible product card directly on the PLP — one level earlier in the funnel than the existing PDP version. Deliberately non-clickable on PLP, consistent with how Myntra and Zepto handle the same pattern; tapping the card still routes to PDP, where the existing Best Price bottom sheet handles deeper exploration.",
+                metrics:
+                    "Price transparency earlier in the funnel; expected downstream lift on PLP→ATC and PLP→Checkout, based on the PDP version's proven pattern.",
+                numbers:
+                    "PRD written, currently in development / entering A/B — no PLP-specific numbers yet. The PDP version it extends already showed a measurable lift across PDP→ATC, ATC→Checkout, AOV and RPU.",
+                stats: [],
+            },
+            {
+                id: "feed-view",
+                title: "Instagram-style feed view (Bewakoof PLP)",
+                headline: "−7.64% conversion (an honest result)",
+                cardCopy:
+                    "Tested an Instagram-style swipe exploration UX on Bewakoof's collection pages — and let the data say no.",
+                problem:
+                    "The bet: giving users an Instagram-style, swipe-first exploration experience on collection PLPs would lean into browsing behavior they already knew from social apps, and increase discovery. Scoped to mWeb only, collection PLPs only, run as a 90/10 A/B test.",
+                solution:
+                    "Shipped the feed-style browsing experience and let the experiment run rather than assuming the bet was right.",
+                metrics:
+                    "None on the primary metric — included here deliberately as an honest result, not cherry-picked wins only.",
+                numbers:
+                    "−7.64% user conversion, +2.19% average order value, +3.38% average basket size. Reading: conversion dropped but basket size grew — discovery-style browsing produced bigger baskets but fewer completed checkouts. Not shipped to 100%, but a real learning about the trade-off between discovery UX and conversion.",
+                stats: [
+                    { num: 7.64, suffix: "%", prefix: "↓", lbl: "User conversion", decimals: 2 },
+                    { num: 2.19, suffix: "%", prefix: "+", lbl: "Average order value", decimals: 2 },
+                    { num: 3.38, suffix: "%", prefix: "+", lbl: "Average basket size", decimals: 2 },
+                ],
+            },
+            {
+                id: "analytics-fix",
+                title: "Analytics tracking fix (Bewakoof)",
+                headline: "12% → 98% tracking coverage",
+                cardCopy:
+                    "Fixed a broken analytics pipeline that was quietly invalidating most of Bewakoof's A/B tests.",
+                problem:
+                    "“Experiment Viewed → Purchase” event tracking coverage sat at just 12%, meaning 88% of purchase events inside running experiments weren't being properly attributed. Every A/B test decision at Bewakoof was effectively being made on deeply incomplete data — without anyone realizing it.",
+                solution:
+                    "Diagnosed and fixed the GA4 analytics event-mapping pipeline underneath the experimentation platform.",
+                metrics:
+                    "Experiment data reliability and the trustworthiness of every A/B test result run on the platform afterward.",
+                numbers:
+                    "Tracking coverage went from 12% to 98%. Not a user-facing feature — foundational instrumentation work that made every other experiment on this list trustworthy.",
+                stats: [
+                    { num: 12, suffix: "%", lbl: "Before coverage" },
+                    { num: 98, suffix: "%", lbl: "After coverage" },
+                    { num: 86, suffix: "pt", lbl: "Coverage gain" },
+                ],
+            },
+            {
+                id: "trust-marker",
+                title: "Clickable trust marker (Bewakoof PDP)",
+                headline: "In progress",
+                cardCopy:
+                    "Made Bewakoof's PDP trust markers (“Easy Returns,” “100% Authentic”) tappable so users can learn more.",
+                problem:
+                    "Trust markers on the PDP (like “Easy Returns” and “100% Authentic”) were static text — users had no way to learn more about what those claims actually meant at the exact moment they were deciding whether to trust the purchase.",
+                solution:
+                    "Made the trust markers clickable, surfacing more detail right at the decision-making moment.",
+                metrics:
+                    "Not yet available — this is a smaller growth hack still in progress.",
+                numbers:
+                    "Flagging rather than inventing depth — depth to be added once more detail is available.",
+                stats: [],
+            },
         ],
     },
     {
         id: "ozi",
         name: "OZI",
+        logo: OZI_LOGO,
         dates: "Dec 2025 – Jan 2026",
         role: "Growth and product intern",
         line: "Quick-commerce platform for babies and moms across NCR, 60-minute delivery, backed by Blume Ventures, 15,000+ SKUs across 10+ categories.",
@@ -242,14 +342,14 @@ export const POSITION = {
     context:
         "One of 14 executives picked for the board out of a pool of 88 — headed a 16-person execution team inside E-Cell's 200+ member department.",
     tenure: "Sep 2023 – Aug 2025",
-    progression: ["Associate", "Executive", "Events & PR Head"],
+    progression: ["Executive", "Events & PR Head"],
     stats: [
         { num: 20000, suffix: "+", lbl: "MES footfall" },
         { num: 1.6, suffix: "x", lbl: "Registration growth", decimals: 1 },
         { num: 40, suffix: "+", lbl: "MOUs signed" },
         { num: 16, lbl: "Team members led" },
     ],
-    work: "Started as an Associate, then Executive, in the Events & PR department before making the board in third year. The team's biggest build was the Manipal Entrepreneurship Summit — 15+ events over the tenure, 5,000+ participants, with speakers and guests including Velu Mani, Ashni Grover, Eclipse Nova, Raj Samani and SDX.",
+    work: "Started as an Executive in the Events & PR department before making the board in third year as Events & PR Head. The team's biggest build was the Manipal Entrepreneurship Summit — 15+ events over the tenure, 5,000+ participants, with speakers and guests including Velu Mani, Ashni Grover, Eclipse Nova, Raj Samani and SDX.",
     achievements: [
         "Broke every previous registration record for the Manipal Entrepreneurship Summit — up 1.6x on prior years.",
         "Signed 40+ MOUs with academic and corporate partners over the full tenure.",
@@ -275,15 +375,15 @@ export const PROJECTS = [
     {
         id: "snabbit",
         wordmark: "Snabbit",
-        category: "Cold outreach build",
+        category: "Observation-led build",
         title: "Snabbit — time estimation prototype",
         blurb:
-            "A working prototype of a delivery time-estimation feature, built before ever emailing the company.",
+            "A prototype of a delivery time-estimation feature — an observation as a user that turned into a self-initiated build.",
         problem:
-            "Wanted to reach out to Snabbit, but a generic cold email doesn't show product thinking — it just describes it.",
+            "Noticed Snabbit's home-service delivery flow was missing a real time-estimation signal — a friction point I kept running into as a user. That observation was worth turning into a personal project rather than filing away as feedback.",
         approach:
-            "Built a functional prototype of a time-estimation feature for their delivery flow, cold, and led with it in the outreach instead of a resume. Highest-effort, highest-signal version of a cold email.",
-        stack: ["Prototype build", "Product teardown", "Cold outreach"],
+            "Built a functional prototype of the missing time-estimation feature end-to-end — treating the problem as a real product exercise: understand the flow, teardown the current UX, and ship a working version rather than just describing one.",
+        stack: ["Prototype build", "Product teardown", "Full-stack shipping"],
         live: "https://snabbit-estimation.netlify.app",
     },
 ];
@@ -292,7 +392,7 @@ export const ACHIEVEMENTS = [
     {
         badge: "Top 40",
         title: "HSBC India Business Case",
-        context: "National, 2,000+ teams · with Sattva & MindMap",
+        context: "National · 2,000+ teams · with Sattva & MindMap",
     },
     {
         badge: "5th place",

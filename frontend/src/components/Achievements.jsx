@@ -1,4 +1,4 @@
-import { Award, Star } from "lucide-react";
+import { Award } from "lucide-react";
 import { ACHIEVEMENTS } from "../data/content";
 
 export const Achievements = () => {
@@ -93,20 +93,6 @@ export const Achievements = () => {
                                 }}
                             >
                                 {a.context}
-                            </div>
-                            {/* 3-star row (decorative — matches Vasu clone) */}
-                            <div
-                                style={{
-                                    display: "flex",
-                                    gap: 3,
-                                    marginTop: 14,
-                                    color: "var(--accent)",
-                                }}
-                                aria-hidden
-                            >
-                                {[0, 1, 2].map((s) => (
-                                    <Star key={s} size={13} fill="currentColor" strokeWidth={0} />
-                                ))}
                             </div>
                         </div>
                     ))}

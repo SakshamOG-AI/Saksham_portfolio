@@ -96,12 +96,40 @@ export const Experience = () => {
                                 data-testid={`experience-tab-${c.id}`}
                                 className={`chip clickable ${on ? "active" : ""}`}
                                 style={{
-                                    padding: "10px 16px",
+                                    padding: "8px 16px 8px 8px",
                                     fontSize: 13.5,
                                     fontWeight: 600,
+                                    gap: 10,
                                 }}
                             >
-                                <Briefcase size={13} />
+                                {c.logo ? (
+                                    <span
+                                        style={{
+                                            width: 26,
+                                            height: 26,
+                                            borderRadius: "50%",
+                                            overflow: "hidden",
+                                            background: "#fff",
+                                            display: "inline-flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            flexShrink: 0,
+                                            border: "1px solid var(--border)",
+                                        }}
+                                    >
+                                        <img
+                                            src={c.logo}
+                                            alt={`${c.name} logo`}
+                                            style={{
+                                                width: "100%",
+                                                height: "100%",
+                                                objectFit: "cover",
+                                            }}
+                                        />
+                                    </span>
+                                ) : (
+                                    <Briefcase size={13} />
+                                )}
                                 {c.name}
                                 <span
                                     style={{

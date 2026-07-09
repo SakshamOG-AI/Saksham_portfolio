@@ -1,5 +1,5 @@
 import { BarChart3, Lightbulb, Users, Sparkles } from "lucide-react";
-import { ABOUT } from "../data/content";
+import { ABOUT, ABOUT_PHOTO } from "../data/content";
 
 const ICONS = { BarChart3, Lightbulb, Users, Sparkles };
 
@@ -29,27 +29,30 @@ export const About = () => {
                             style={{ width: 260, height: 260, left: -20, top: -10 }}
                         />
                         <div
-                            data-testid="about-photo-placeholder"
+                            data-testid="about-photo"
                             style={{
                                 position: "relative",
                                 width: 220,
                                 height: 220,
                                 borderRadius: "50%",
-                                background:
-                                    "linear-gradient(135deg, rgba(0,128,255,0.25), rgba(255,47,209,0.25))",
+                                overflow: "hidden",
                                 border: "1px solid var(--border)",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                fontFamily: "var(--font-head)",
-                                fontSize: 56,
-                                fontWeight: 800,
-                                color: "rgba(255,255,255,0.85)",
-                                letterSpacing: "-0.02em",
+                                boxShadow:
+                                    "0 0 0 4px rgba(0,128,255,0.08), 0 20px 60px -20px rgba(0,0,0,0.6)",
                                 animation: "fade-in 0.9s ease both",
                             }}
                         >
-                            SG
+                            <img
+                                src={ABOUT_PHOTO}
+                                alt="Saksham Goel"
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    objectPosition: "center 20%",
+                                    display: "block",
+                                }}
+                            />
                         </div>
                     </div>
 

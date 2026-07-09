@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { X, Link2, Check } from "lucide-react";
 import { useInView } from "../hooks/useInView";
 import { useCountUp } from "../hooks/useCountUp";
 import { DynamicFiltersDemo } from "./DynamicFiltersDemo";
@@ -24,6 +24,7 @@ const StatCell = ({ stat, active }) => {
 
 export const CaseStudy = ({ project, company, onClose }) => {
     const [ref, inView] = useInView({ threshold: 0.1 });
+    const [copied, setCopied] = useState(false);
 
     // Lock body scroll while open
     useEffect(() => {
@@ -42,6 +43,23 @@ export const CaseStudy = ({ project, company, onClose }) => {
         window.addEventListener("keydown", onKey);
         return () => window.removeEventListener("keydown", onKey);
     }, [onClose]);
+
+    const copyLink = async () => {
+        const url = `${window.location.origin}${window.location.pathname}#project/${company.id}/${project.id}`;
+        try {
+            await navigator.clipboard.writeText(url);
+        } catch {
+            // Fallback: create temp textarea
+            const t = document.createElement("textarea");
+            t.value = url;
+            document.body.appendChild(t);
+            t.select();
+            document.execCommand("copy");
+            document.body.removeChild(t);
+        }
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1800);
+    };
 
     const statCols = Math.min(project.stats.length, 3);
 
@@ -97,44 +115,74 @@ export const CaseStudy = ({ project, company, onClose }) => {
                             </p>
                         )}
                     </div>
-                    <button
-                        onClick={onClose}
-                        aria-label="Close case study"
-                        data-testid="case-study-close"
-                        style={{
-                            width: 42,
-                            height: 42,
-                            borderRadius: "50%",
-                            background: "rgba(255,255,255,0.05)",
-                            border: "1px solid var(--border)",
-                            color: "var(--foreground)",
-                            cursor: "pointer",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            flexShrink: 0,
-                        }}
-                    >
-                        <X size={18} />
-                    </button>
+                    <div style={{ display: "flex", gap: 10, flexShrink: 0 }}>
+                        <button
+                            onClick={copyLink}
+                            aria-label="Copy link to this case study"
+                            data-testid="case-study-copy-link"
+                            style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: 6,
+                                height: 42,
+                                padding: "0 14px",
+                                borderRadius: 999,
+                                background: copied
+                                    ? "rgba(0,128,255,0.15)"
+                                    : "rgba(255,255,255,0.05)",
+                                border: "1px solid",
+                                borderColor: copied ? "var(--primary)" : "var(--border)",
+                                color: copied ? "var(--primary)" : "var(--foreground)",
+                                cursor: "pointer",
+                                fontSize: 12.5,
+                                fontWeight: 600,
+                                fontFamily: "var(--font-body)",
+                                transition: "all 0.2s",
+                            }}
+                        >
+                            {copied ? <Check size={14} /> : <Link2 size={14} />}
+                            {copied ? "Link copied" : "Copy link"}
+                        </button>
+                        <button
+                            onClick={onClose}
+                            aria-label="Close case study"
+                            data-testid="case-study-close"
+                            style={{
+                                width: 42,
+                                height: 42,
+                                borderRadius: "50%",
+                                background: "rgba(255,255,255,0.05)",
+                                border: "1px solid var(--border)",
+                                color: "var(--foreground)",
+                                cursor: "pointer",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                            }}
+                        >
+                            <X size={18} />
+                        </button>
+                    </div>
                 </div>
 
-                {/* Stats */}
-                <div
-                    ref={ref}
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: `repeat(${statCols}, 1fr)`,
-                        gap: 14,
-                        marginBottom: 34,
-                    }}
-                    className="case-stats"
-                    data-testid="case-study-stats"
-                >
-                    {project.stats.map((s, i) => (
-                        <StatCell key={i} stat={s} active={inView} />
-                    ))}
-                </div>
+                {/* Stats — only render if there are any */}
+                {project.stats && project.stats.length > 0 && (
+                    <div
+                        ref={ref}
+                        style={{
+                            display: "grid",
+                            gridTemplateColumns: `repeat(${statCols}, 1fr)`,
+                            gap: 14,
+                            marginBottom: 34,
+                        }}
+                        className="case-stats"
+                        data-testid="case-study-stats"
+                    >
+                        {project.stats.map((s, i) => (
+                            <StatCell key={i} stat={s} active={inView} />
+                        ))}
+                    </div>
+                )}
 
                 {/* Prose blocks — Problem / Solution / Metrics improved / Numbers that moved the most */}
                 <div style={{ display: "grid", gap: 20 }}>
