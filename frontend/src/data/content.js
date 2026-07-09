@@ -15,49 +15,22 @@ export const RESUME_URL = "/resume.pdf";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/saksham-goel-254165270/";
 export const EMAIL = "saqsham2002@gmail.com";
 
-export const HERO_BG =
-    "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/49iswo72_WhatsApp%20Image%202026-07-08%20at%2023.55.16.jpeg";
+export const HERO_BG = "/hero.jpeg";
 // About photo — same source image as the hero for now, cropped as a circle.
 export const ABOUT_PHOTO = HERO_BG;
-export const TMRW_LOGO =
-    "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/udk3w8nx_image.png";
-export const OZI_LOGO =
-    "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/y97e9rwc_image.png";
+export const TMRW_LOGO = "/tmrw-logo.png";
+export const OZI_LOGO = "/ozi-logo.png";
 
 // Gallery photos — displayed in a masonry layout so nothing gets cropped.
 export const GALLERY_PHOTOS = [
-    {
-        src: "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/gz2wriuj_WhatsApp%20Image%202026-07-09%20at%2010.00.46%20%282%29.jpeg",
-        alt: "HSBC India Business Case Programme 2024-25 — ID card",
-    },
-    {
-        src: "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/ik8s4bfk_WhatsApp%20Image%202026-07-09%20at%2010.00.46%20%281%29.jpeg",
-        alt: "Cricket team win — with trophy",
-    },
-    {
-        src: "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/g1ensey8_WhatsApp%20Image%202026-07-09%20at%2010.00.45.jpeg",
-        alt: "Diamond Jubilee Award — MIT Manipal",
-    },
-    {
-        src: "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/8pzp5977_WhatsApp%20Image%202026-07-09%20at%2010.00.45%20%281%29.jpeg",
-        alt: "MIT amphitheater — team group photo",
-    },
-    {
-        src: "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/dxr2mza8_WhatsApp%20Image%202026-07-09%20at%2010.00.44.jpeg",
-        alt: "Panel discussion — Library Auditorium, MIT Manipal",
-    },
-    {
-        src: "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/isu5pmt0_WhatsApp%20Image%202026-07-09%20at%2010.00.47.jpeg",
-        alt: "HSBC Business Case Programme — team with mentors",
-    },
-    {
-        src: "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/kqj1kfbv_WhatsApp%20Image%202026-07-09%20at%2010.00.47%20%281%29.jpeg",
-        alt: "E-Cell team — Manipal Entrepreneurship Summit planning session",
-    },
-    {
-        src: "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/eg8kzmlp_WhatsApp%20Image%202026-07-09%20at%2010.00.46.jpeg",
-        alt: "Manipal Entrepreneurship Summit — Popeyes activation",
-    },
+    { src: "/gallery/1-hsbc-id.jpeg", alt: "HSBC India Business Case Programme 2024-25 — ID card" },
+    { src: "/gallery/2-cricket.jpeg", alt: "Cricket team win — with trophy" },
+    { src: "/gallery/3-diamond-jubilee.jpeg", alt: "Diamond Jubilee Award — MIT Manipal" },
+    { src: "/gallery/4-amphitheater.jpeg", alt: "MIT amphitheater — team group photo" },
+    { src: "/gallery/5-panel.jpeg", alt: "Panel discussion — Library Auditorium, MIT Manipal" },
+    { src: "/gallery/6-hsbc-team.jpeg", alt: "HSBC Business Case Programme — team with mentors" },
+    { src: "/gallery/7-ecell.jpeg", alt: "E-Cell team — Manipal Entrepreneurship Summit planning session" },
+    { src: "/gallery/8-popeyes.jpeg", alt: "Manipal Entrepreneurship Summit — Popeyes activation" },
 ];
 
 export const ABOUT = {
