@@ -51,7 +51,7 @@ export const Contact = () => {
                         <a
                             className="btn btn-ghost"
                             href={RESUME_URL}
-                            download
+                            download="Saksham_Goel_CV.pdf"
                             data-testid="contact-cv-btn"
                         >
                             <Download size={15} /> Download CV
@@ -94,33 +94,6 @@ export const Contact = () => {
                             }}
                         >
                             <Linkedin size={14} /> LinkedIn
-                        </a>
-                        <a
-                            href={`mailto:${EMAIL}`}
-                            data-testid="contact-email-pill"
-                            style={{
-                                display: "inline-flex",
-                                alignItems: "center",
-                                gap: 8,
-                                padding: "10px 18px",
-                                borderRadius: 999,
-                                background: "#ea4335",
-                                color: "#fff",
-                                fontSize: 13,
-                                fontWeight: 600,
-                                border: "none",
-                                transition: "transform 0.2s, opacity 0.2s",
-                            }}
-                            onMouseEnter={(e) => {
-                                e.currentTarget.style.transform = "translateY(-1px)";
-                                e.currentTarget.style.opacity = "0.92";
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.style.transform = "translateY(0)";
-                                e.currentTarget.style.opacity = "1";
-                            }}
-                        >
-                            <Mail size={14} /> {EMAIL}
                         </a>
                     </div>
                 </div>

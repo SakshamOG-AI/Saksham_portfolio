@@ -11,8 +11,8 @@ export const NAV_SECTIONS = [
     { id: "contact", label: "Contact" },
 ];
 
-export const RESUME_URL = "/resume-placeholder.pdf";
-export const LINKEDIN_URL = "#linkedin-placeholder";
+export const RESUME_URL = "/resume.pdf";
+export const LINKEDIN_URL = "https://www.linkedin.com/in/saksham-goel-254165270/";
 export const EMAIL = "saqsham2002@gmail.com";
 
 export const HERO_BG =
@@ -45,6 +45,18 @@ export const GALLERY_PHOTOS = [
     {
         src: "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/dxr2mza8_WhatsApp%20Image%202026-07-09%20at%2010.00.44.jpeg",
         alt: "Panel discussion — Library Auditorium, MIT Manipal",
+    },
+    {
+        src: "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/isu5pmt0_WhatsApp%20Image%202026-07-09%20at%2010.00.47.jpeg",
+        alt: "HSBC Business Case Programme — team with mentors",
+    },
+    {
+        src: "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/kqj1kfbv_WhatsApp%20Image%202026-07-09%20at%2010.00.47%20%281%29.jpeg",
+        alt: "E-Cell team — Manipal Entrepreneurship Summit planning session",
+    },
+    {
+        src: "https://customer-assets.emergentagent.com/job_saksham-portfolio-3/artifacts/eg8kzmlp_WhatsApp%20Image%202026-07-09%20at%2010.00.46.jpeg",
+        alt: "Manipal Entrepreneurship Summit — Popeyes activation",
     },
 ];
 

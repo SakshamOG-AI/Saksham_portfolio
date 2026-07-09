@@ -65,7 +65,7 @@ export const Nav = () => {
                 <a
                     className="resume-btn"
                     href={RESUME_URL}
-                    download
+                    download="Saksham_Goel_CV.pdf"
                     data-testid="nav-resume-btn"
                 >
                     Résumé
